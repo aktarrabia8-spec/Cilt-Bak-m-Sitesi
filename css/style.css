@@ -1,0 +1,59 @@
+/*sayfayı tamamını kaplayan ve içeriği ortalayan ana yapı*/
+body{
+    background:linear-gradient(135deg, rgb(39, 184, 207),white);
+    font-family:'segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;/*yatay ortalar*/
+    align-items:center;/*dikey ortalar*/
+    height:100vh;/*ekran yüksekliğinş tamamını kullan*/
+    margin:0;
+    color:#333;
+
+}
+/* beyaz orta kutu*/
+.main-container{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);/*kutuya derinlik katan bölge*/
+    text-align:center;
+    width:90%;
+    max-width:450px;
+}
+
+/*geri sayım kutularının dizilimi*/
+#countdown-container{
+    display:flex;
+    gap:10px;
+    margin:15px 0;
+
+}
+
+/*her bir zaman birimi (gün,saat vb.) kutusu*/
+.time-box{
+    background:white;
+    border:1px solid #ddd;
+    padding:10px 10px;
+    border-radius:10px;
+    flex:1;/*tüm kutular eşit genişlikte olur*/
+    
+}
+
+/*buton tasarımı*/
+button{
+    background-color:rgb(22, 168, 197);
+    color:white;
+    border:none;
+    padding:5px 5px ;
+    margin-top:10px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;/*geçişleri yumuşatır*/
+}
+
+.button:hover{
+    background-color:rgb(229, 230, 230);/*üzerine gelince renk açılır*/
+    transform:scale(1.05);
+}
+

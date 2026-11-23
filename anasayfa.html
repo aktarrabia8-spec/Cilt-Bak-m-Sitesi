@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Cilt Bakım Rehberi | Analiz ve Sağlık </title>
+    
+    <style>
+        body,html{
+            margin:1px;
+            padding:1px;
+            font-family:'poppins',sans-serif;
+            background-color:rgba(134, 204, 186, 0.941);
+            scroll-behavior:smooth;
+        }
+        .hero-section{
+            display:flex;
+            height:100vh;
+            width:100%;
+            border-bottom:4px solid greenyellow;
+            box-sizing:border-box;
+            align-items:center;
+        }
+        .left-panel{
+            flex:1.5;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            padding:7rem;
+            position:relative;
+            margin-left: 7rem;
+        }
+        .right-panel{
+            flex:1.2;
+            background-color:#ffff;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            padding:40px;
+            box-sizing:border-box;
+            text-align:left;
+            margin-right:11rem;
+           
+            border-radius:30px;
+            align-items: stretch;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            height:70%;
+           
+         
+           
+          
+           
+        }
+        .content-card{
+            background:white;
+            padding:40px;
+            border-radius:30px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.05);
+            width:90%;
+            max-width:500px;
+            min-height:400px;
+            transition:0.5s;
+            
+
+        }
+        .quiz-option-btn,.nav-btn{
+            width:100%;
+            padding:15px;
+            margin:8px 0;
+            border-radius:12px;
+            cursor:pointer;
+            border:1px solid #81212177;
+            background:white;
+            font-family:'poppins',sans-serif;
+            transition:0.3s;
+            text-align:left;
+        }
+        .quiz-option-btn:hover,.nav-btn:hover{
+            background:rgb(232, 222, 204);
+            color:white;
+            transform:translatex(5px);
+        }
+
+        .brand-section{
+            position:absolute;
+            bottom:20px;
+            left:20px;
+            display:none;
+        }
+        .brand-box{
+            display:inline-block;
+            background:white;
+            padding:5px 12px;
+            margin-right:8px;
+            border-radius:8px;
+            font-size:0.75rem;
+            color:orange;
+            border:1px solid white;
+        }
+        .extra-section{
+            padding:80px 20px;
+            background:white;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+
+        .info-card{
+            max-width:800px;
+            width:100%;
+            margin-bottom:50px;
+            padding:30px;
+            background:#ffff;
+            border-radius:20px;
+            display:flex;
+            align-items:center;
+            gap:30px;
+            opacity:0;
+            transform:translateY(50px);
+            transition:0.8s all ease;
+        }
+
+        .info-card.reveal{
+            opacity:1;
+            transform:translateY(0);
+        }
+        .info-icon{font-size:3rem;}
+        .info-text h2{color:orange;margin-top:0;}
+        .info-text p{color:gray;line-height:1.6;}
+
+        .footer{
+            background-color:white;
+            padding:50px 20px;
+            text-align:center;
+            border-top:1px solid white;
+            margin-top:50px;   
+        }
+        .footer-container{
+            max-width:1000px;
+            margin:0 auto;
+        }
+        .footer-logo{
+            font-size:1.5rem;
+            color:orange;
+            font-weight:600;
+            margin-bottom:20px;
+        }
+        .social-icons{
+            display:flex;
+            justify-content: center;
+            gap:25px;
+            margin-bottom:20px;
+        }
+        .social-icons a{
+            text-decoration:none;
+            font-size:1.5rem;
+            color:rgb(209, 92, 92);
+            transition:0.3s;
+        }
+        .social-icons a:hover{
+            color:rgb(61, 97, 97);
+            transform:translateY(-3px);
+        }
+        .contact-info{
+            font-size:0.9rem;
+            color:gray;
+            margin-bottom:15px;
+
+        }
+        .contact-info span{
+            display:block;
+            margin-bottom:5px;
+        }
+        .copyright{
+            font-size:0.8rem;
+            color:rgb(245, 161, 4);
+            border-bottom:1px solid #100202ee;
+            padding-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section"><div class="left-panel"><div id="main-content" class="content-card"><div id="quiz-ui">
+        <h2 style="color:rgba(0, 255, 255, 0.641);">Daha Hızlı Cilt Bakım Analizi</h2>
+        <p style="color:rgb(2, 23, 41)"><strong>Cilt Durumunuzu Seçin</strong></p>
+        <button class="quiz-option-btn" onclick="onerGoster('yağlı')">Parlama ve Geniş Gözenekler</button>
+        <button class="quiz-option-btn" onclick="onerGoster('kuru')">Gerginlik ve Pullanma</button>
+        <button class="quiz-option-btn" onclick="onerGoster('karma')">Bölgesel Yağlanma</button>
+        <button class="quiz-option-btn" onclick="onerGoster('hassas')">Kızarıklık ve Yanma</button>
+    </div>
+    
+    <div id="result-ui" style="display:none;"><h2 id="res-title" style="color:rgb(59, 12, 105)"></h2><ul id="res-list" style="padding-left:20px; color:black;"></ul></div>
+        <p id="res-tip" style="background-color:rgba(111, 204, 230, 0.555);padding:10px;border-radius:8px;font-size:0.9rem;"></p>
+        <button onclick="location.reload()" style="background:none; border:none; color:rgb(110, 64, 5); cursor:pointer; text-decoration: underline; word-spacing:3px">TESTİ BAŞA AL</button>
+    </div>
+    <div id="brand-ui" class="brand-section"><p style="font-size:0.7rem;color:black;margin-bottom:5px;">POPULER MARKALAR</p>
+        <div id="brand-list"></div>
+    </div>
+    </div>
+        <div class="right-panel"><h3 style="color:rgb(2, 10, 11);"><strong>Hızlı Rehber</strong></h3>
+            <button class="nav-btn" onclick="onerGoster('yağlı')">yağlı Cilt</button>
+            <button class="nav-btn" onclick="onerGoster('kuru')">kuru Cilt</button>
+            <button class="nav-btn" onclick="onerGoster('karma')">karma Cilt</button>
+            <button class="nav-btn" onclick="onerGoster('hassas')">hassas Cilt</button>        
+        </div>
+    </div>
+
+    <div class="extra-section">
+            <div class="info-icon">Bütünsel Bakım Rehberi</div>
+            <div class="info-card"><div class="info-icon"></div>
+                <div class="info-text">
+                    <h2>İçeriden Nemlendirme</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis obcaecati sunt provident similique, fuga debitis?</p>
+                </div>
+            </div>
+
+        <div class="info-card"><div class="info-icon"></div>
+            <div class="info-text">
+                <h2>Cilt Dostu Beslenme</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, exercitationem error iure libero voluptates perspiciatis.</p>
+            </div>
+
+        </div>
+
+        <div class="info-card"><div class="info-icon"></div>
+            <div class="info-text">
+                <h2>Hareket ve Kan Akışı</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quidem molestias veniam fuga veritatis animi.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const veriler={
+            yağlı:{başlık:"Yağlı Cilt", oneriler:["Jel Temizleyici", "Niasinamid","Güneş Kremi"],tip:"Salatalık Asit Kullanın.",markalar:["La Roche","Cerave"] },
+            kuru:{başlık:"Kuru Cilt", oneriler:["Su Bazlı Temizleyici", "Nem Maskeri","Güneş Kremi"],tip:"Seramid İçeren Kremler Kullanın.",markalar:["Bioderma","Cerave"] },
+            karma:{başlık:"Karma Cilt", oneriler:["Dengelleyici Tonik", "Kil Maskesi","Güneş Kremi"],tip:"T Bölgesine Dikkat Edin.",markalar:["Neutrogina","Avon"] },
+            hassas:{başlık:"Hassas Cilt", oneriler:["Yağ Bazlı Temizleyici", "Nem Maskesi","Güneş Kremi"],tip:"Gliserin İçeren Ürünler Kullanın.",markalar:["Avene","Cerave"] },
+        };
+
+        function onerGoster(tip){
+            document.getElementById("quiz-ui").style.display="none";//soruları gizle
+            document.getElementById("result-ui").style.display="block";//sonucu göster
+            document.getElementById("brand-ui").style.display="block";//markaları göster
+            
+            const veri=veriler[tip];
+            document.getElementById("res-title").innerText=veri.başlık;//başlığı yaz
+            document.getElementById("res-tip").innerText="Tavsiye: "+ veri.tip;
+
+            const list=document.getElementById("res-list");
+            list.innerHTML="";//listeyi  önce temizle
+            veri.oneriler.forEach(o=>{list.innerHTML +=`<li>${o}</li>`});
+            
+            const bList=document.getElementById("brand-list");
+            bList.innerHTML="";
+            veri.markalar.forEach(m=>{bList.innerHTML +=`<span class="brand-box">${m}</span>`});//kutucukları ekleme
+
+        }
+
+    window.addEventListener('scroll',()=>{
+        const cards=document.querySelectorAll('.info-card');//tüm bilgi kartlarını bul
+        cards.forEach(card=>{
+            const cardTop=card.getBoundingClientRect().top;//kartın yukarı olan mesafesi
+            if(cardTop< window.innerHeight*0.85){
+                card.classList.add('reveal');
+            }
+        })
+    })
+    </script>
+
+    <footer class="footer"> <div class="footer-container">
+        <div class="footer-logo">Cilt Bakım Rehberim</div>
+        <div class="social-icons"> <a href="https://www.linkedin.com/in/rabia-aktar-8a226342b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="linkedin">💙</a>
+            <a href="https://github.com/aktarrabia8-spec" target="_blank" title="github">💖</a>
+            <a href="mailto:aktarrabia8@gmail.com" target="_blank" title="E-Posta">💙</a>
+        </div>
+
+        <div class="contact-info"><span> ❤️<strong>Telefon : </strong>+90 999 999 99 99</span>
+            <span>❤️ <strong>Konum : </strong>İstanbul,Türkiye</span>
+        </div>
+
+        <div class="copyright">&copy;2026 Cilt Bakım Rehberi .Tüm Hakları Saklıdır.</div>
+    </div>
+
+    </footer> 
+</body>
+</html>
